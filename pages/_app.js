@@ -5,8 +5,10 @@ import { AppProvider } from "@shopify/polaris";
 import { Provider, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import { Redirect } from "@shopify/app-bridge/actions";
-import "@shopify/polaris/dist/styles.css";
-import translations from "@shopify/polaris/locales/en.json";
+import '@shopify/polaris/build/esm/styles.css';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import ClientRouter from '../components/ClientRouter';
+import CustomLink from '../components/CustomLink';
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -53,7 +55,10 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, host } = this.props;
     return (
-      <AppProvider i18n={translations}>
+      <AppProvider
+        i18n={enTranslations}
+        linkComponent={CustomLink}
+      >
         <Provider
           config={{
             apiKey: API_KEY,
@@ -61,6 +66,7 @@ class MyApp extends App {
             forceRedirect: true,
           }}
         >
+          <ClientRouter />
           <MyProvider Component={Component} {...pageProps} />
         </Provider>
       </AppProvider>

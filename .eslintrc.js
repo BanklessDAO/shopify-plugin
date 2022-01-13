@@ -1,5 +1,6 @@
 module.exports = {
   extends: [
+    'next/core-web-vitals',
     'plugin:shopify/react',
     'plugin:shopify/polaris',
     'plugin:shopify/jest',

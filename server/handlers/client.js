@@ -1,8 +1,9 @@
 import ApolloClient from "apollo-boost";
+import { ApiVersion } from "@shopify/shopify-api";
 
 export const createClient = (shop, accessToken) => {
   return new ApolloClient({
-    uri: `https://${shop}/admin/api/2019-10/graphql.json`,
+    uri: `https://${shop}/admin/api/${ApiVersion.October21}/graphql.json`,
     request: operation => {
       operation.setContext({
         headers: {
